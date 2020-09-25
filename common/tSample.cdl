@@ -1,0 +1,22 @@
+import("EV3_common.cdl");
+
+celltype tSampleTaskMain {
+	 entry nLUM::sTaskBody eTaskBody;
+	 call sLCD cLCD;
+};
+
+[node, to_through(rKernelDomain, HRPSVCThroughPlugin, "")]
+region rSample {
+
+       cell tSampleTaskMain SampleTaskMain {
+       	    cLCD = rKernelDomain::LCD.eLCD;
+       };
+
+       cell nLUM::tTask SampleTask {
+     	    taskAttribute = C_EXP("TA_ACT");
+    	    priority = C_EXP("TMIN_APP_TPRI + 1");
+     	    stackSize = C_EXP("STACK_SIZE");
+	     
+	    cBody = SampleTaskMain.eTaskBody;
+	};
+};
