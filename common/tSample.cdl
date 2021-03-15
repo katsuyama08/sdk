@@ -5,9 +5,19 @@ celltype tSampleTaskMain {
 	 call sLCD cLCD;
 };
 
-[node, to_through(rKernelDomain, HRPSVCThroughPlugin, "")]
-region rSample {
+[singleton]
+celltype tEIDTaskMain {
+	 entry nLUM::sTaskBody eTaskBody;
+	 call sEID cEID;
+	 call sSetfn cSetfn[];
 
+	 var {
+	     char appEID[5][37];
+	 };
+};
+
+//[node, to_through(rKernelDomain, HRPSVCThroughPlugin, "")]
+region rSample {
        cell tSampleTaskMain SampleTaskMain {
        	    cLCD = rKernelDomain::LCD.eLCD;
        };
@@ -19,4 +29,16 @@ region rSample {
 	     
 	    cBody = SampleTaskMain.eTaskBody;
 	};
+
+       cell tEIDTaskMain EIDTaskMain {
+       	    cEID = rKernelDomain::BaseEID.eEID;
+       };
+
+       cell nLUM::tTask EIDTask {
+            taskAttribute = C_EXP("TA_ACT");
+            priority = C_EXP("TMIN_APP_TPRI");
+            stackSize = C_EXP("STACK_SIZE");
+
+            cBody = EIDTaskMain.eTaskBody;
+        };
 };

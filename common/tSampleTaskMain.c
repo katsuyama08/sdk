@@ -9,6 +9,18 @@
  * #[<...>]# から #[</...>]# で囲まれたコメントは編集しないでください
  * tecsmerge によるマージに使用されます
  *
+ * 呼び口関数 #_TCPF_#
+ * call port: cLCD signature: sLCD context:task
+ *   ER             cLCD_setFont( lcdfont_t font );
+ *   ER             cLCD_getFontSize( lcdfont_t font, int32_t* p_width, int32_t* p_height );
+ *   ER             cLCD_drawString( const char* str, int32_t x, int32_t y );
+ *   ER             cLCD_fillRect( int32_t x, int32_t y, int32_t w, int32_t h, lcdcolor_t color );
+ *   ER             cLCD_drawLine( int32_t x0, int32_t y0, int32_t x1, int32_t y1 );
+ *   void           cLCD_print( const char* str );
+ *   void           cLCD_puts( const char* str );
+ *   void           cLCD_clear( );
+ *   void           cLCD_showMessageBox( const char* title, const char* msg );
+ *
  * #[</PREAMBLE>]# */
 
 /* プロトタイプ宣言や変数の定義をここに書きます #_PAC_# */
@@ -44,9 +56,9 @@ eTaskBody_main(CELLIDX idx)
 
 	/* ここに処理本体を記述します #_TEFB_# */
 	lcdfont_t font = EV3_FONT_MEDIUM;
-	ev3_lcd_set_font(font);
+        ev3_lcd_set_font(font);
 	ev3_lcd_draw_string("LCDSample", 0, 20);
-	
+
 }
 
 /* #[<POSTAMBLE>]#

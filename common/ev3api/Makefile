@@ -10,6 +10,7 @@ APPL_COBJS += ev3api.o \
 	ev3api_lcd.o \
 	ev3api_motor.o \
 	ev3api_newlib.o \
-	ev3api_sensor.o
+	ev3api_sensor.o \
+	ev3api_eid.o
 
 INCLUDES += -I$(KERNELDIR)/sdk/common/ev3api

@@ -30,6 +30,7 @@ extern "C" {
 #include "../src/ev3api_speaker.h"
 #include "../src/ev3api_rtos.h"
 #include "../src/ev3api_battery.h"
+#include "../src/ev3api_eid.h"
 
 /**
  * Kernel object ID
